@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Calculate Football Club Average Ratings</title>
 </head>
 <body>
     
@@ -11,7 +11,6 @@
 </html>
 
 <script>
-    let footbalClub = [];
     const data = [
         {"year":"2017","points":[
                 {"club":"Chelsea","points":"93"},
@@ -41,7 +40,8 @@
             {"club":"Arsenal","points":"70"},
             {"club":"Manchester United","points":"66"}]}
     ]
-
+    let footbalClub = [];
+    
     function getAllPoints(points) {        
         points.map(value => {
             footbalClub[value.club] = (footbalClub[value.club] || 0) + parseInt(value.points)
@@ -51,11 +51,8 @@
 
     function sortClub(footbalClub)
     {
-        let newArray = [];
         let result = [];
-        
         const allClub = Object.keys(footbalClub);
-
         const clubRatings = Object.values(footbalClub).sort().reverse()
         
         const clubSorted = clubRatings.map(value => {
@@ -68,13 +65,6 @@
                 }
             }
         });
-
-        const clubRatingValues = clubRatings.map((value, index) => {
-            newArray[result[index]] = {
-                "ratings": value,
-                'average': Math.ceil(value/3)
-            }
-        })
 
         return result
     }
@@ -105,8 +95,6 @@
     })
 
     let clubs = sortClub(footbalClub);
-    // let ClubsAverage = getClubAverage(footbalClub);
-
     console.log("Clubs based on ratings are: " + clubs.join(', '));
     clubs.forEach(value => AverageOutput(value));
 </script>
