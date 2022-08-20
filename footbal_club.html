@@ -53,7 +53,6 @@
     {
         let newArray = [];
         let result = [];
-
         
         const allClub = Object.keys(footbalClub);
 
@@ -96,15 +95,17 @@
 
     function AverageOutput(value)
     {
+        const ClubsAverage =  getClubAverage(footbalClub);
+
         console.log(`Club ${value} Has total rating of ${ClubsAverage[value].ratings} and average ratings or ${ClubsAverage[value].average_ratings}`)
     }
-    
+
     data.map(value => {
         getAllPoints(value.points)
     })
 
     let clubs = sortClub(footbalClub);
-    let ClubsAverage = getClubAverage(footbalClub);
+    // let ClubsAverage = getClubAverage(footbalClub);
 
     console.log("Clubs based on ratings are: " + clubs.join(', '));
     clubs.forEach(value => AverageOutput(value));
