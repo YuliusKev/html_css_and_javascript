@@ -53,15 +53,30 @@
     {
         let newArray = [];
         let result = [];
-        for( let key in footbalClub)
-        {
-            newArray[footbalClub[key]] = key;
-        }
 
-        const clubRatings = Object.values(footbalClub).sort().reverse().map(value => {
-            result.push(newArray[value])
+        
+        const allClub = Object.keys(footbalClub);
+
+        const clubRatings = Object.values(footbalClub).sort().reverse()
+        
+        const clubSorted = clubRatings.map(value => {
+            for(let index=0; index<allClub.length; index++)
+            {
+                if(value == footbalClub[allClub[index]])
+                {
+                    result.push(allClub[index])
+                    continue;
+                }
+            }
         });
-        // console.log(result);
+
+        const clubRatingValues = clubRatings.map((value, index) => {
+            newArray[result[index]] = {
+                "ratings": value,
+                'average': Math.ceil(value/3)
+            }
+        })
+
         return result
     }
 
@@ -70,12 +85,20 @@
         let result = [];
         for( let key in footbalClub)
         {
-            result[key] = Math.ceil(footbalClub[key]/3);
+            result[key] = {
+                'average_ratings' : Math.ceil(footbalClub[key]/3),
+                'ratings' : footbalClub[key],
+            }  
         }
 
         return result;
     }
 
+    function AverageOutput(value)
+    {
+        console.log(`Club ${value} Has total rating of ${ClubsAverage[value].ratings} and average ratings or ${ClubsAverage[value].average_ratings}`)
+    }
+    
     data.map(value => {
         getAllPoints(value.points)
     })
@@ -83,6 +106,6 @@
     let clubs = sortClub(footbalClub);
     let ClubsAverage = getClubAverage(footbalClub);
 
-    console.log(clubs);
-    console.log(ClubsAverage)
+    console.log("Clubs based on ratings are: " + clubs.join(', '));
+    clubs.forEach(value => AverageOutput(value));
 </script>
