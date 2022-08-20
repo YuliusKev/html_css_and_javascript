@@ -1,0 +1,88 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+    let footbalClub = [];
+    const data = [
+        {"year":"2017","points":[
+                {"club":"Chelsea","points":"93"},
+                {"club":"Tottenham","points":"86"},
+                {"club":"Manchester City","points":"78"},
+                {"club":"Liverpool","points":"76"},
+                {"club":"Arsenal","points":"75"},
+                {"club":"Manchester United","points":"69"}
+            ]
+        },
+        
+        {"year":"2018","points":[
+            {"club":"Manchester City","points":"100"},
+            {"club":"Manchester United","points":"81"},
+            {"club":"Tottenham","points":"77"},
+            {"club":"Liverpool","points":"75"},
+            {"club":"Chelsea","points":"70"},
+            {"club":"Arsenal","points":"63"}
+            ]
+        },
+        
+        {"year":"2019","points":[
+            {"club":"Manchester City","points":"98"},
+            {"club":"Liverpool","points":"97"},
+            {"club":"Chelsea","points":"72"},
+            {"club":"Tottenham","points":"71"},
+            {"club":"Arsenal","points":"70"},
+            {"club":"Manchester United","points":"66"}]}
+    ]
+
+    function getAllPoints(points) {        
+        points.map(value => {
+            footbalClub[value.club] = (footbalClub[value.club] || 0) + parseInt(value.points)
+        })
+
+    }
+
+    function sortClub(footbalClub)
+    {
+        let newArray = [];
+        let result = [];
+        for( let key in footbalClub)
+        {
+            newArray[footbalClub[key]] = key;
+        }
+
+        const clubRatings = Object.values(footbalClub).sort().reverse().map(value => {
+            result.push(newArray[value])
+        });
+        // console.log(result);
+        return result
+    }
+
+    function getClubAverage(footbalClub)
+    {
+        let result = [];
+        for( let key in footbalClub)
+        {
+            result[key] = Math.ceil(footbalClub[key]/3);
+        }
+
+        return result;
+    }
+
+    data.map(value => {
+        getAllPoints(value.points)
+    })
+
+    let clubs = sortClub(footbalClub);
+    let ClubsAverage = getClubAverage(footbalClub);
+
+    console.log(clubs);
+    console.log(ClubsAverage)
+</script>

@@ -1,0 +1,81 @@
+<style>
+
+.categories {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+
+}
+.flag {
+    width: 600px;
+    height: 400px;
+    box-shadow: 0px 0px 90px 1px #989;
+    margin-bottom: 40px;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+}
+
+.stripe{
+    height: 50%;
+    width: 100%;
+}
+
+#color1{
+    height: 30px;
+}
+
+
+</style>
+
+<div class="categories">
+    <div class="flag">
+        <div class="stripe" id="colortop" style="background: #fed500;"></div>
+        <div class="stripe" id="colorbottom" style="background: #aa0aa2;"></div>
+    </div>
+</div>
+<div class="categories">
+    <select id="color1" onchange="changeColorTop()">
+        <option value="#fed500" selected>Yellow</option>
+        <option value="#fe0000">Red</option>
+        <option value="#1276d4">Water Blue</option>
+        <option value="#000000">Black</option>
+        <option value="#015bbb">Blue</option>
+        <option value="#22cc13">Green</option>
+        <option value="#aa0aa2">Violet</option>
+        <option value="#ffffff">White</option>
+    </select>
+    <select id="color2" onchange="changeColorBottom()">
+        <option value="#fed500">Yellow</option>
+        <option value="#fe0000">Red</option>
+        <option value="#1276d4">Water Blue</option>
+        <option value="#000000">Black</option>
+        <option value="#015bbb">Blue</option>
+        <option value="#22cc13">Green</option>
+        <option value="#aa0aa2" selected>Violet</option>
+        <option value="#ffffff">White</option>
+    </select>
+    </select>
+</div>
+
+<script>
+    function changeColorTop()
+    {
+        let color = document.getElementById("color1").value;
+        let element = document.getElementById("colortop");
+        element.style.backgroundColor = color;
+    }
+    function changeColorBottom()
+    {
+        let color = document.getElementById("color2").value;
+        let element = document.getElementById("colorbottom");
+        element.style.backgroundColor = color;
+    }
+</script>
